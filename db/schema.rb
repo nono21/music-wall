@@ -10,14 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140920011701) do
+ActiveRecord::Schema.define(version: 20140922204549) do
 
-  create_table "messages", force: true do |t|
+  create_table "songs", force: true do |t|
+    t.integer  "user_id"
     t.string   "url"
     t.string   "author"
-    t.string   "content"
+    t.string   "song_title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "password"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "votes", force: true do |t|
+    t.integer  "song_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["user_id", "song_id"], name: "index_votes_on_user_id_and_song_id", unique: true
 
 end

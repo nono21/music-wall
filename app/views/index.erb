@@ -1,3 +1,23 @@
-<h1>Home Page</h1>
-<a href="/messages/new">Post a message... It's FREE (for now)!</a>
+<% if session[:user_id] %>
+<% redirect '/songs' %>
+<% else %>
+<h1>Welcome to Free Music</h1>
+<h2>Showing how front end development is done.</h2>
+<h2>Login now to access the lists</h2>
+<form method="post" action="/login">
+  <div>
+    <label>Email:</label>
+    <input type="text" name="email" value="<%= @user.email %>">
+  </div>
+  <div>
+    <label>Password:</label>
+    <input type="password" name="password" value="<%= @user.password %>">
+  </div>
+
+  <div>
+    <input type="submit" value="Submit" >
+  </div>
+</form>
+<a href="/signup">Don't have an account?Sign up here... It's FREE (for now)!</a>
+<% end %>
 

@@ -1,0 +1,27 @@
+<h1>All songs</h1>
+<% @songs.each do |song| %>
+  <div class="song">
+    <p> 
+      <%= song.song_title %>  <a href="<%=song.url%>"><%= song.url %></a> 
+    </p>
+
+    <h3> <small>(by: <a href="/songs/<%= song.id %>"> <%= song.author %>)</a>Votes: <%= vote_count(song.id) %> </small></h3>
+    
+    <h5>Posted by: <%= song.user.email %> at <%= song.created_at%></h5>
+    <form method="post" action="/vote">
+  <div>
+    
+    <input type="hidden" name="song_id" value="<%= song.id %>">
+  </div>
+  <div>
+    <input type="submit" value="Vote" >
+  </div>
+  </form>
+    
+  </div>
+<% end %>
+<a href="/songs/new">Post a song... It's FREE (for now)!</a>
+<p>
+<a href="/logout">Logout</a>
+</p>
+
